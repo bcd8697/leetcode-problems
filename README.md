@@ -1,2 +1,2 @@
 # leetcode-problems
-This repo contsins solutions of some of the Leetcode problems
+This repo contains solutions of some of the Leetcode problems
