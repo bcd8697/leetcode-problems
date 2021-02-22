@@ -46,11 +46,8 @@ class Solution:
         # check last value of the list
         if val not in res:
             res.append(val)
-            
-        res = sorted(res)
         
         # converting List to ListNode
-        
         head = ListNode(res[0])
         tail = head
         e = 1
