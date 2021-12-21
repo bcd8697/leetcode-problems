@@ -31,30 +31,24 @@ nums is a non-decreasing array.
 
 class Solution:
     def searchRange(self, nums: List[int], target: int) -> List[int]:
+        left = self.binSearch(nums, target, True)
+        right = self.binSearch(nums, target, False)
+        return [left, right]
         
-        l, r = 0, len(nums) - 1
-        
-        leftIdx = -1
-        rightIdx = -1
-        
+    # leftBias =[True/False], if False, res is rightBiased
+    def binSearch(self, nums, target,leftBias):
+        l, r =0, len(nums) - 1
+        i = -1
         while l <= r:
-            
-            # every loop we check if we found the solution during the previous loop
-            if nums[l] == nums[r] == target:
-                leftIdx = l
-                rightIdx = r
-                break
-            
-            # left pointer moving
-            if nums[l] != target:
-                l += 1
+            m = (l + r) // 2
+            if target > nums[m]:
+                l = m + 1
+            elif target < nums[m]:
+                r = m - 1
             else:
-                leftIdx = l
-            
-            # right pointer moving
-            if nums[r] != target:
-                r -= 1
-            else:
-                rightIdx = r
-                
-        return [leftIdx, rightIdx]
+                i = m
+                if leftBias:
+                    r = m - 1
+                else:
+                    l = m + 1
+        return i
